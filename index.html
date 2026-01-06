@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - Meryem Yaqoub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 30px 40px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .profile-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 4px solid #3498db;
+            object-fit: cover;
+            flex-shrink: 0;
+            background: #ecf0f1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #7f8c8d;
+            font-size: 0.8em;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .header-content {
+            flex: 1;
+        }
+
+        .header h1 {
+            font-size: 2.2em;
+            margin-bottom: 5px;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .header .title {
+            font-size: 1.2em;
+            color: #3498db;
+            margin-bottom: 15px;
+            font-weight: 300;
+        }
+
+        .contact-info {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            font-size: 0.85em;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .contact-item::before {
+            content: "●";
+            color: #3498db;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 0;
+        }
+
+        .sidebar {
+            background: #ecf0f1;
+            padding: 30px 25px;
+        }
+
+        .content {
+            padding: 30px 35px;
+        }
+
+        .section {
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            font-size: 1.3em;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 3px solid #3498db;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .sidebar .section-title {
+            font-size: 1.1em;
+            color: #34495e;
+            border-bottom: 2px solid #3498db;
+        }
+
+        .profile-text {
+            text-align: justify;
+            color: #555;
+            line-height: 1.6;
+            font-size: 0.95em;
+        }
+
+        .experience-item, .education-item {
+            margin-bottom: 20px;
+            padding-left: 15px;
+            border-left: 3px solid #3498db;
+        }
+
+        .experience-header {
+            margin-bottom: 10px;
+        }
+
+        .job-title {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 3px;
+        }
+
+        .company {
+            color: #3498db;
+            font-weight: 500;
+            font-size: 0.95em;
+        }
+
+        .period {
+            color: #7f8c8d;
+            font-size: 0.85em;
+            font-style: italic;
+            margin-top: 2px;
+        }
+
+        .experience-item ul {
+            margin-top: 8px;
+            padding-left: 20px;
+        }
+
+        .experience-item li {
+            margin-bottom: 6px;
+            color: #555;
+            line-height: 1.5;
+            font-size: 0.9em;
+        }
+
+        .degree {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 3px;
+        }
+
+        .school {
+            color: #3498db;
+            font-size: 0.95em;
+        }
+
+        .skills-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .skill-item {
+            background: white;
+            padding: 8px 12px;
+            border-radius: 5px;
+            color: #2c3e50;
+            font-weight: 500;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            font-size: 0.9em;
+        }
+
+        .languages-list, .software-list, .interests-list {
+            list-style: none;
+        }
+
+        .languages-list li, .software-list li, .interests-list li {
+            padding: 6px 0;
+            color: #555;
+            border-bottom: 1px solid #bdc3c7;
+            font-size: 0.9em;
+        }
+
+        .languages-list li:last-child, 
+        .software-list li:last-child, 
+        .interests-list li:last-child {
+            border-bottom: none;
+        }
+
+        .level {
+            color: #7f8c8d;
+            font-size: 0.9em;
+            font-style: italic;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+                max-width: 100%;
+                page-break-inside: avoid;
+            }
+            @page {
+                size: A4;
+                margin: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+
+        /* File upload styling */
+        .photo-upload {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .photo-upload input {
+            display: none;
+        }
+
+        .photo-upload-label {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 4px solid #3498db;
+            background: #ecf0f1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #7f8c8d;
+            font-size: 0.8em;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .photo-upload-label:hover {
+            background: #d5dbdb;
+        }
+
+        .photo-preview {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: none;
+        }
+
+        .photo-preview.active {
+            display: block;
+        }
+
+        .upload-text {
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="photo-upload">
+                <input type="file" id="photoInput" accept="image/*">
+                <label for="photoInput" class="photo-upload-label">
+                    <img id="photoPreview" class="photo-preview" alt="Photo">
+                    <span class="upload-text" id="uploadText">Cliquez pour ajouter une photo</span>
+                </label>
+            </div>
+            <div class="header-content">
+                <h1>MERYEM YAQOUB</h1>
+                <div class="title">Gestionnaire de Clientèle</div>
+                <div class="contact-info">
+                    <div class="contact-item">06 27 38 85 78</div>
+                    <div class="contact-item">meryemyqoub@gmail.com</div>
+                    <div class="contact-item">Casablanca, Maroc</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="sidebar">
+                <div class="section">
+                    <h2 class="section-title">Compétences</h2>
+                    <div class="skills-list">
+                        <div class="skill-item">Esprit d'équipe</div>
+                        <div class="skill-item">Adaptabilité</div>
+                        <div class="skill-item">Flexibilité</div>
+                        <div class="skill-item">Organisation</div>
+                        <div class="skill-item">Négociation</div>
+                        <div class="skill-item">Relation client</div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2 class="section-title">Langues</h2>
+                    <ul class="languages-list">
+                        <li>Arabe <span class="level">Langue maternelle</span></li>
+                        <li>Français <span class="level">Intermédiaire (B1)</span></li>
+                        <li>Anglais <span class="level">Débutant (A1)</span></li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h2 class="section-title">Logiciels</h2>
+                    <ul class="software-list">
+                        <li>Microsoft Word</li>
+                        <li>Microsoft Excel</li>
+                        <li>Microsoft PowerPoint</li>
+                        <li>Canva</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h2 class="section-title">Centres d'intérêt</h2>
+                    <ul class="interests-list">
+                        <li>Cuisine</li>
+                        <li>Musique</li>
+                        <li>Quad</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="content">
+                <div class="section">
+                    <h2 class="section-title">Profil</h2>
+                    <p class="profile-text">
+                        Gestionnaire de clientèle expérimentée avec plus de 3 ans d'expertise dans le secteur bancaire chez Attijariwafa Bank. Spécialisée dans l'optimisation de la satisfaction client grâce à une approche personnalisée et stratégique. Capacité démontrée à dépasser les objectifs commerciaux tout en maintenant d'excellentes relations clients.
+                    </p>
+                </div>
+
+                <div class="section">
+                    <h2 class="section-title">Expérience Professionnelle</h2>
+                    
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <div class="job-title">Gestionnaire de Clientèle</div>
+                            <div class="company">Attijariwafa Bank</div>
+                            <div class="period">2022 - Aujourd'hui</div>
+                        </div>
+                        <ul>
+                            <li>Accompagnement personnalisé des clients et proposition de solutions financières adaptées</li>
+                            <li>Identification d'opportunités commerciales permettant de dépasser les objectifs de vente</li>
+                            <li>Gestion d'un portefeuille client diversifié avec un taux de satisfaction élevé</li>
+                        </ul>
+                    </div>
+
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <div class="job-title">Commerciale</div>
+                            <div class="company">Diwan Livre</div>
+                            <div class="period">2022</div>
+                        </div>
+                        <ul>
+                            <li>Prospection ciblée (librairies, établissements scolaires, entreprises) pour accroître les ventes</li>
+                            <li>Gestion de la relation client : suivi, fidélisation et traitement des réclamations</li>
+                            <li>Développement d'un portefeuille clients B2B et B2C avec suivi personnalisé</li>
+                        </ul>
+                    </div>
+
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <div class="job-title">Chargée de Clientèle</div>
+                            <div class="company">BMCI Bank</div>
+                            <div class="period">2020</div>
+                        </div>
+                        <ul>
+                            <li>Accueil et orientation des clients garantissant une expérience professionnelle</li>
+                            <li>Prospection ciblée pour développer le portefeuille clients à forte valeur ajoutée</li>
+                            <li>Négociation et vente de produits bancaires selon les objectifs fixés</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2 class="section-title">Formation</h2>
+                    
+                    <div class="education-item">
+                        <div class="degree">Master en Marketing et Stratégie Commerciale</div>
+                        <div class="school">ENCG Casablanca</div>
+                        <div class="period">2022 - 2024</div>
+                    </div>
+
+                    <div class="education-item">
+                        <div class="degree">Licence Professionnelle en Métiers de la Banque</div>
+                        <div class="school">Université Mohammed V, Rabat</div>
+                        <div class="period">2019 - 2020</div>
+                    </div>
+
+                    <div class="education-item">
+                        <div class="degree">Diplôme de Technicien Spécialisé en Gestion des Entreprises</div>
+                        <div class="school">ISTA Hay Hassani 1</div>
+                        <div class="period">2018 - 2019</div>
+                    </div>
+
+                    <div class="education-item">
+                        <div class="degree">Baccalauréat Sciences Physiques et Chimie</div>
+                        <div class="school">Lycée Homman El Fatouaki</div>
+                        <div class="period">2016 - 2017</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const photoInput = document.getElementById('photoInput');
+        const photoPreview = document.getElementById('photoPreview');
+        const uploadText = document.getElementById('uploadText');
+
+        photoInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    photoPreview.src = event.target.result;
+                    photoPreview.classList.add('active');
+                    uploadText.style.display = 'none';
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+</body>
+</html>
