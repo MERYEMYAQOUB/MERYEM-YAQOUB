@@ -39,14 +39,13 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.98);
             padding: 15px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            backdrop-filter: blur(10px);
         }
 
         .logo {
@@ -54,9 +53,15 @@
             font-weight: 700;
             color: var(--primary);
             letter-spacing: 1px;
+            z-index: 1001;
         }
 
         .logo span { color: var(--accent); }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
 
         .nav-links a {
             text-decoration: none;
@@ -82,13 +87,22 @@
             transform: translateY(-2px);
         }
 
+        /* MOBILE MENU ICON */
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--primary);
+            cursor: pointer;
+            z-index: 1001;
+        }
+
         /* --- HERO SECTION --- */
         .hero {
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 0 10%;
+            padding: 100px 10% 0 10%; /* Added top padding for fixed nav */
             background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
             position: relative;
         }
@@ -135,7 +149,7 @@
             color: var(--accent);
             font-weight: 600;
             margin-bottom: 20px;
-            height: 30px;
+            min-height: 30px;
         }
 
         .hero p {
@@ -203,15 +217,12 @@
             position: relative;
             background-color: inherit;
             width: 50%;
-            opacity: 0; /* For animation */
+            opacity: 0; 
             transform: translateY(20px);
             transition: 0.5s all ease;
         }
 
-        .container-box.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        .container-box.visible { opacity: 1; transform: translateY(0); }
 
         .left { left: 0; text-align: right; }
         .right { left: 50%; }
@@ -316,17 +327,50 @@
             100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
         }
 
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
-            .hero { flex-direction: column-reverse; height: auto; padding-top: 100px; text-align: center; }
-            .hero-img { margin-bottom: 30px; }
+        /* --- RESPONSIVE MOBILE STYLES --- */
+        @media (max-width: 991px) {
+            h1 { font-size: 2.8rem; }
+            .hero { padding: 120px 5% 50px 5%; flex-direction: column-reverse; text-align: center; }
+            .hero-img { margin-bottom: 40px; width: 100%; }
+            .profile-blob { width: 280px; height: 280px; }
+            .menu-toggle { display: block; }
+            
+            /* Mobile Navigation */
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background: white;
+                flex-direction: column;
+                justify-content: center;
+                box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+                transition: 0.4s;
+            }
+            .nav-links.active { right: 0; }
+            .nav-links a { margin: 20px 0; font-size: 1.2rem; }
+            
+            /* Mobile Timeline (One Column) */
+            .timeline { margin: 0; }
             .timeline::after { left: 31px; }
             .container-box { width: 100%; padding-left: 70px; padding-right: 25px; }
+            .container-box::before { left: 60px; border: medium solid white; border-width: 10px 10px 10px 0; border-color: transparent white transparent transparent; }
+            .left::after, .right::after { left: 21px; }
+            .right { left: 0%; }
             .left { text-align: left; }
-            .right { left: 0; }
-            .content-box { border-left: 4px solid var(--accent); border-right: none; }
-            h1 { font-size: 2.5rem; }
-            .nav-links { display: none; } /* Hide menu on mobile for simplicity */
+            
+            /* Fix Borders for Mobile */
+            .right .content-box { border-right: none; border-left: 4px solid var(--accent); }
+            .content-box { padding: 15px 20px; }
+        }
+
+        @media (max-width: 480px) {
+            h1 { font-size: 2rem; }
+            .typing-text { font-size: 1.1rem; }
+            .section-title { font-size: 1.5rem; }
+            .profile-blob { width: 220px; height: 220px; }
+            .contact-item { width: 100%; padding: 15px; }
         }
     </style>
 </head>
@@ -335,18 +379,23 @@
     <!-- NAVIGATION -->
     <nav>
         <div class="logo">MERYEM<span>YAQOUB</span></div>
-        <div class="nav-links">
-            <a href="#about">Profil</a>
-            <a href="#experience">Expérience</a>
-            <a href="#skills">Compétences</a>
-            <a href="#contact">Contact</a>
-            <!-- MAKE SURE TO UPLOAD YOUR PDF TO GITHUB AND NAME IT cv-meryem.pdf -->
+        
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+
+        <div class="nav-links" id="navLinks">
+            <a href="#about" onclick="toggleMenu()">Profil</a>
+            <a href="#experience" onclick="toggleMenu()">Expérience</a>
+            <a href="#skills" onclick="toggleMenu()">Compétences</a>
+            <a href="#contact" onclick="toggleMenu()">Contact</a>
+            <!-- MAKE SURE TO UPLOAD YOUR PDF TO GITHUB NAMED cv-meryem.pdf -->
             <a href="https://meryemyaqoub.github.io/MERYEM-YAQOUB/CV%20-%20Meryem%20Yaqoub.pdf" class="btn-download" download><i class="fas fa-download"></i> Télécharger CV</a>
         </div>
     </nav>
 
     <!-- HERO SECTION -->
-    <header class="hero">
+    <header class="hero" id="about">
         <div class="hero-content">
             <h4>Bonjour, je suis</h4>
             <h1>Meryem Yaqoub</h1>
@@ -467,8 +516,14 @@
         <p>&copy; 2024 Meryem Yaqoub. Tous droits réservés.</p>
     </footer>
 
-    <!-- JAVASCRIPT FOR ANIMATIONS -->
+    <!-- JAVASCRIPT -->
     <script>
+        // Toggle Mobile Menu
+        function toggleMenu() {
+            const nav = document.getElementById('navLinks');
+            nav.classList.toggle('active');
+        }
+
         // Typing Effect
         const textElement = document.getElementById('typewriter');
         const texts = ["Gestionnaire de Clientèle", "Commerciale", "Banque & Finance"];
@@ -485,7 +540,7 @@
             if (letter.length === currentText.length) {
                 count++;
                 index = 0;
-                setTimeout(type, 2000); // Wait before deleting
+                setTimeout(type, 2000); 
             } else {
                 setTimeout(type, 100);
             }
